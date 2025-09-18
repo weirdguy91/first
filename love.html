@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 Pyaar Ka Proposal 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating hearts background */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.3;
+            animation: floatUp 8s infinite linear;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .proposal-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .question-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .main-heart {
+            font-size: 4em;
+            margin: 20px 0;
+            animation: heartbeat 2s infinite;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .question-text {
+            font-size: 2em;
+            margin: 30px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.4;
+            animation: slideInFromLeft 1s ease-out;
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .button-container {
+            margin: 40px 0;
+            position: relative;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .btn {
+            font-size: 1.4em;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            font-family: 'Georgia', serif;
+        }
+
+        .yes-btn {
+            background: linear-gradient(45deg, #4CAF50, #8BC34A);
+            color: white;
+            animation: glow-green 2s infinite alternate;
+        }
+
+        .no-btn {
+            background: linear-gradient(45deg, #F44336, #FF5722);
+            color: white;
+            position: absolute;
+            animation: glow-red 2s infinite alternate;
+        }
+
+        @keyframes glow-green {
+            from {
+                box-shadow: 0 10px 25px rgba(76, 175, 80, 0.5);
+            }
+            to {
+                box-shadow: 0 10px 35px rgba(76, 175, 80, 0.8), 0 0 20px rgba(76, 175, 80, 0.6);
+            }
+        }
+
+        @keyframes glow-red {
+            from {
+                box-shadow: 0 10px 25px rgba(244, 67, 54, 0.5);
+            }
+            to {
+                box-shadow: 0 10px 35px rgba(244, 67, 54, 0.8), 0 0 20px rgba(244, 67, 54, 0.6);
+            }
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .plea-message {
+            font-size: 1.8em;
+            color: #FFD700;
+            margin: 20px 0;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: rgba(244, 67, 54, 0.9);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+
+        .celebration {
+            text-align: center;
+            animation: celebration 2s infinite;
+        }
+
+        .celebration h1 {
+            font-size: 4em;
+            margin: 20px 0;
+            color: #FFD700;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+        }
+
+        @keyframes celebration {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.05) rotate(1deg); }
+            75% { transform: scale(1.05) rotate(-1deg); }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .shake {
+            animation: shake 0.8s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10% { transform: translateX(-10px) rotate(-1deg); }
+            20% { transform: translateX(10px) rotate(1deg); }
+            30% { transform: translateX(-10px) rotate(-1deg); }
+            40% { transform: translateX(10px) rotate(1deg); }
+            50% { transform: translateX(-5px) rotate(-0.5deg); }
+            60% { transform: translateX(5px) rotate(0.5deg); }
+            70% { transform: translateX(-5px) rotate(-0.5deg); }
+            80% { transform: translateX(5px) rotate(0.5deg); }
+        }
+
+        .funny-message {
+            font-size: 1.3em;
+            color: #FF69B4;
+            margin: 15px 0;
+            font-style: italic;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .proposal-card {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            .question-text {
+                font-size: 1.5em;
+            }
+            
+            .btn {
+                font-size: 1.2em;
+                padding: 12px 30px;
+            }
+            
+            .counter {
+                top: 15px;
+                right: 15px;
+                padding: 10px 15px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <div class="counter" id="noCounter">No attempts: 0</div>
+    
+    <div class="container">
+        <!-- Question 1 -->
+        <div id="q1" class="proposal-card">
+            <div class="question-number">1</div>
+            <div class="main-heart">💕</div>
+            <div class="question-text">Kya tum mujhe pasand karti ho? 😊</div>
+            <div class="button-container">
+                <button class="btn yes-btn" onclick="nextQuestion(1)">YES! 💖</button>
+                <button class="btn no-btn" id="no1" onclick="handleNo(1)">NO 😔</button>
+            </div>
+            <div id="message1" class="funny-message"></div>
+        </div>
+
+        <!-- Question 2 -->
+        <div id="q2" class="proposal-card hidden">
+            <div class="question-number">2</div>
+            <div class="main-heart">💗</div>
+            <div class="plea-message">Are maan jao na! 🥺</div>
+            <div class="question-text">Kya main tumhara dost ban sakta hun? 😅</div>
+            <div class="button-container">
+                <button class="btn yes-btn" onclick="nextQuestion(2)">YES! 💖</button>
+                <button class="btn no-btn" id="no2" onclick="handleNo(2)">NO 😤</button>
+            </div>
+            <div id="message2" class="funny-message"></div>
+        </div>
+
+        <!-- Question 3 -->
+        <div id="q3" class="proposal-card hidden">
+            <div class="question-number">3</div>
+            <div class="main-heart">💘</div>
+            <div class="plea-message">Are maan jao na! Please! 🙏</div>
+            <div class="question-text">Kya tum meri best friend banogi? 😭</div>
+            <div class="button-container">
+                <button class="btn yes-btn" onclick="nextQuestion(3)">YES! 💖</button>
+                <button class="btn no-btn" id="no3" onclick="handleNo(3)">NO 😡</button>
+            </div>
+            <div id="message3" class="funny-message"></div>
+        </div>
+
+        <!-- Final Question -->
+        <div id="final" class="proposal-card hidden">
+            <div class="question-number">💍</div>
+            <div class="main-heart">💖💘💗</div>
+            <div class="plea-message">Are maan jao na! Last chance! 💔</div>
+            <div class="question-text" style="color: #FFD700; font-size: 2.2em;">
+                Kya tum meri girlfriend banogi? 💍
+            </div>
+            <div class="button-container">
+                <button class="btn yes-btn" onclick="celebrate()">YES! 💕</button>
+                <button class="btn no-btn" id="noFinal" onclick="handleNo('final')">NO 😈</button>
+            </div>
+            <div id="messageFinal" class="funny-message"></div>
+        </div>
+
+        <!-- Success -->
+        <div id="success" class="proposal-card hidden">
+            <div class="celebration">
+                <h1>🎉 YAYYYY! 🎉</h1>
+                <div class="main-heart" style="font-size: 5em;">💕💖💗💘💝</div>
+                <div class="question-text" style="color: #FFD700;">
+                    I LOVE YOU TOO! 💕
+                </div>
+                <div class="funny-message" style="font-size: 1.5em;">
+                    Finally! After <span id="finalCount"></span> attempts! 😂
+                </div>
+                <div style="margin-top: 30px; font-size: 1.3em;">
+                    Tumne mujhe itna tadpaya! But it was worth it! 💖
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let noClickCount = 0;
+        let currentQuestion = 1;
+        
+        const funnyMessages = [
+            ["Pakka? 🤔", "Sach mein? 😢", "Are you sure? 🥺"],
+            ["Phir se soch lo! 😏", "Dil se nahi kaha! 😢", "Think again! 💭"],
+            ["Itna cruel kyun ho? 💔", "Main ro dunga! 😭", "Please reconsider! 🙏"],
+            ["Bas ek baar yes bol do! 🥺", "Tumhara dil pathar hai? 💎", "I'm begging! 😭"],
+            ["Main tumhare liye kuch bhi karunga! 🌟", "Don't be so mean! 😢", "Pretty please! ✨"]
+        ];
+        
+        // Create floating hearts background
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const hearts = ['💕', '💖', '💗', '💘', '💝', '💞', '💟', '❤️'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                heart.style.opacity = Math.random() * 0.5 + 0.1;
+                container.appendChild(heart);
+                
+                setTimeout(() => {
+                    container.removeChild(heart);
+                }, 8000);
+            }, 300);
+        }
+        
+        function positionNoButton(questionNum) {
+            const button = document.getElementById(`no${questionNum}`);
+            const container = button.closest('.button-container');
+            const containerRect = container.getBoundingClientRect();
+            
+            // Random position within the container
+            const maxX = 200;
+            const maxY = 30;
+            
+            button.style.position = 'absolute';
+            button.style.left = Math.random() * maxX + 'px';
+            button.style.top = Math.random() * maxY + 'px';
+        }
+        
+        function handleNo(questionNum) {
+            noClickCount++;
+            document.getElementById('noCounter').textContent = `No attempts: ${noClickCount}`;
+            
+            const card = document.getElementById(questionNum === 'final' ? 'final' : `q${questionNum}`);
+            const button = document.getElementById(questionNum === 'final' ? 'noFinal' : `no${questionNum}`);
+            const messageDiv = document.getElementById(questionNum === 'final' ? 'messageFinal' : `message${questionNum}`);
+            
+            // Shake animation
+            card.classList.add('shake');
+            setTimeout(() => card.classList.remove('shake'), 800);
+            
+            // Move button to random position
+            const container = card.querySelector('.button-container');
+            const maxX = container.offsetWidth - 120;
+            const maxY = container.offsetHeight - 60;
+            
+            button.style.position = 'absolute';
+            button.style.left = Math.random() * maxX + 'px';
+            button.style.top = Math.random() * maxY + 'px';
+            
+            // Show funny message
+            const messages = questionNum === 'final' ? 
+                ["Nahi nahi nahi! 😭", "Please baby! 🥺", "Don't do this to me! 💔", "I'll cry! 😢", "Why so cruel? 😭"] :
+                funnyMessages[Math.min(Math.floor(noClickCount / 2), funnyMessages.length - 1)];
+            
+            messageDiv.textContent = messages[Math.floor(Math.random() * messages.length)];
+            
+            // Make button smaller and faster
+            const scale = Math.max(0.7, 1 - (noClickCount * 0.03));
+            button.style.transform = `scale(${scale})`;
+            
+            // After 5 attempts, make button run away on hover
+            if (noClickCount >= 5) {
+                button.onmouseenter = () => {
+                    button.style.left = Math.random() * maxX + 'px';
+                    button.style.top = Math.random() * maxY + 'px';
+                };
+            }
+            
+            // After 10 attempts, button moves continuously
+            if (noClickCount >= 10) {
+                setInterval(() => {
+                    if (!button.classList.contains('hidden')) {
+                        button.style.left = Math.random() * maxX + 'px';
+                        button.style.top = Math.random() * maxY + 'px';
+                    }
+                }, 1500);
+            }
+        }
+        
+        function nextQuestion(current) {
+            document.getElementById(`q${current}`).classList.add('hidden');
+            
+            if (current < 3) {
+                document.getElementById(`q${current + 1}`).classList.remove('hidden');
+                setTimeout(() => positionNoButton(current + 1), 100);
+            } else {
+                document.getElementById('final').classList.remove('hidden');
+                setTimeout(() => positionNoButton('final'), 100);
+            }
+        }
+        
+        function celebrate() {
+            document.getElementById('final').classList.add('hidden');
+            document.getElementById('success').classList.remove('hidden');
+            document.getElementById('finalCount').textContent = noClickCount;
+            document.getElementById('noCounter').style.display = 'none';
+            
+            // Create celebration hearts
+            createCelebrationHearts();
+        }
+        
+        function createCelebrationHearts() {
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.textContent = ['💕', '💖', '💗', '💘'][Math.floor(Math.random() * 4)];
+                    heart.style.position = 'fixed';
+                    heart.style.left = Math.random() * window.innerWidth + 'px';
+                    heart.style.top = window.innerHeight + 'px';
+                    heart.style.fontSize = '2em';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '1000';
+                    heart.style.transition = 'all 4s ease-out';
+                    
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        heart.style.top = '-100px';
+                        heart.style.transform = 'rotate(360deg)';
+                        heart.style.opacity = '0';
+                    }, 100);
+                    
+                    setTimeout(() => {
+                        document.body.removeChild(heart);
+                    }, 4000);
+                }, i * 150);
+            }
+        }
+        
+        // Initialize
+        createFloatingHearts();
+        setTimeout(() => positionNoButton(1), 500);
+    </script>
+</body>
+</html>
